@@ -30,6 +30,7 @@ function addInteraction(content) {
 
 
 function secondTabInteraction() {
+  setUpInitalStorage()
   myMap();
   eventDragMap()
   eventClickMap();
