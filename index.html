@@ -28,6 +28,34 @@
         );
 
         map.addListener("drag", MontaDados);
+
+
+
+        const myLatlng = { lat: -25.363, lng: 131.044 };
+
+
+        // Create the initial InfoWindow.
+        let infoWindow = new google.maps.InfoWindow({
+          content: "Click the map to get Lat/Lng!",
+          position: myLatlng,
+        });
+
+        infoWindow.open(map);
+
+        // Configure the click listener.
+        map.addListener("click", (mapsMouseEvent) => {
+          // Close the current InfoWindow.
+          infoWindow.close();
+
+          // Create a new InfoWindow.
+          infoWindow = new google.maps.InfoWindow({
+            position: mapsMouseEvent.latLng,
+          });
+          infoWindow.setContent(
+            JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+          );
+          infoWindow.open(map);
+        });
       }
     </script>
   </head>
@@ -93,15 +121,22 @@
         localStorage.setItem("long", map.getCenter().lng());
         localStorage.setItem("zoom", map.getZoom());
         if (document.getElementById("lat"))
-          document.getElementById("lat").value = map.getCenter().lat().toFixed(6);
+          document.getElementById("lat").value = map
+            .getCenter()
+            .lat()
+            .toFixed(6);
         if (document.getElementById("long"))
-          document.getElementById("long").value = map.getCenter().lng().toFixed(6);
+          document.getElementById("long").value = map
+            .getCenter()
+            .lng()
+            .toFixed(6);
         if (document.getElementById("zoom"))
           document.getElementById("zoom").value = map.getZoom();
-        const link = `${window.location}?lat=${map.getCenter().lat()}&long=${map.getCenter().lng()}&zooml=${map.getZoom()}`;
-        if (document.getElementById("link")) document.getElementById("link").value = link
-
-
+        const link = `${window.location}?lat=${map.getCenter().lat()}&long=${map
+          .getCenter()
+          .lng()}&zooml=${map.getZoom()}`;
+        if (document.getElementById("link"))
+          document.getElementById("link").value = link;
 
         const centro = centerMap(8, 2, map);
         if (!centro) return;
@@ -145,11 +180,11 @@
       function secondTabInteraction() {
         myMap();
 
-        const secondButton = document.getElementById("second_button");
-        secondButton.addEventListener("click", (event) => {
-          let actualData = document.getElementById("second_data");
-          actualData.textContent = +actualData.textContent - 1;
-        });
+        // const secondButton = document.getElementById("second_button");
+        // secondButton.addEventListener("click", (event) => {
+        //   let actualData = document.getElementById("second_data");
+        //   actualData.textContent = +actualData.textContent - 1;
+        // });
       }
     </script>
   </body>
