@@ -17,7 +17,6 @@ async function MontaDados() {
     .lng()}&zooml=${map.getZoom()}`;
   if (document.getElementById("link"))
     document.getElementById("link").value = link;
-
   const centro = centerMap(8, 2, map);
   if (!centro) return;
   console.log(centro);
@@ -49,19 +48,10 @@ function addInteraction(content) {
 }
 
 function firstTabInteraction() {
-  const firstButton = document.getElementById("first_button");
-  firstButton.addEventListener("click", (event) => {
-    let actualData = document.getElementById("first_data");
-    actualData.textContent = +actualData.textContent + 1;
-  });
 }
 
 function secondTabInteraction() {
   myMap();
-
-  // const secondButton = document.getElementById("second_button");
-  // secondButton.addEventListener("click", (event) => {
-  //   let actualData = document.getElementById("second_data");
-  //   actualData.textContent = +actualData.textContent - 1;
-  // });
+  eventDragMap()
+  eventClickMap()
 }
