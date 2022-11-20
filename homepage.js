@@ -1,7 +1,7 @@
 const navbar = document.getElementById("navbar");
 navbar.addEventListener("click", (event) => {
     if (event.target.id !== "navbar") {
-        fetch(`/${event.target.id}.html`).then((response) => {
+        fetch(`${event.target.id}.html`).then((response) => {
             response.text().then(function (data) {
                 document.getElementById("content").innerHTML = data
                 addInteraction(event.target.id)
