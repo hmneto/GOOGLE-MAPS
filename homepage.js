@@ -31,6 +31,8 @@ function firstTabInteraction() {
 }
 
 function secondTabInteraction() {
+    myMap() 
+
     const secondButton = document.getElementById("second_button")
     secondButton.addEventListener("click", (event) => {
         let actualData = document.getElementById("second_data")
