@@ -16,9 +16,7 @@ function eventDragMap() {
   map.addListener("drag", MontaDados);
 }
 
-
-function eventClickMap(){
-
+function eventClickMap() {
   //   const myLatlng = { lat: -25.363, lng: 131.044 };
 
   // Create the initial InfoWindow.
@@ -31,6 +29,8 @@ function eventClickMap(){
 
   // Configure the click listener.
   map.addListener("click", (mapsMouseEvent) => {
+
+    const { lat, lng } = mapsMouseEvent.latLng.toJSON()
     // Close the current InfoWindow.
     infoWindow.close();
 
@@ -38,8 +38,8 @@ function eventClickMap(){
     infoWindow = new google.maps.InfoWindow({
       position: mapsMouseEvent.latLng,
     });
-    infoWindow.setContent(
-      JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+    infoWindow.setContent(`${lat.toFixed(6)}, ${lng.toFixed(6)}`
+      //JSON.stringify( null, 2)
     );
     infoWindow.open(map);
   });
@@ -49,10 +49,18 @@ function getZoomMap() {
   return map.getZoom();
 }
 
-function getCenterLatMap(){
-    return map.getCenter().lat()
+function getCenterLatMap() {
+  return map.getCenter().lat().toFixed(6);
 }
 
-function getCenterLongMap(){
-    return map.getCenter().lat()
+function getCenterLngMap() {
+  return map.getCenter().lng().toFixed(6);
+}
+
+function getLatLongZoom() {
+  return {
+    lat: getCenterLatMap(),
+    lng: getCenterLngMap(),
+    zoom: map.getZoom(),
+  };
 }
