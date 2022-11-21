@@ -1,8 +1,10 @@
 let map;
 function myMap() {
-  const latitude = localStorage.getItem("lat");
-  const longitude = localStorage.getItem("long");
-  const zoom = Number(localStorage.getItem("zoom"));
+  const {
+    latitude,
+    longitude,
+    zoom
+  } = getInputSearchMapMemoryOrUrl(getUrlParams());
 
   var mapProp = {
     center: new google.maps.LatLng(latitude, longitude),
@@ -14,6 +16,10 @@ function myMap() {
 
 function eventDragMap() {
   map.addListener("drag", MontaDados);
+}
+
+function eventZoomMap() {
+  map.addListener("zoom_changed", MontaDados);
 }
 
 function eventClickMap() {
@@ -29,8 +35,7 @@ function eventClickMap() {
 
   // Configure the click listener.
   map.addListener("click", (mapsMouseEvent) => {
-
-    const { lat, lng } = mapsMouseEvent.latLng.toJSON()
+    const { lat, lng } = mapsMouseEvent.latLng.toJSON();
     // Close the current InfoWindow.
     infoWindow.close();
 
@@ -38,7 +43,8 @@ function eventClickMap() {
     infoWindow = new google.maps.InfoWindow({
       position: mapsMouseEvent.latLng,
     });
-    infoWindow.setContent(`${lat.toFixed(6)}, ${lng.toFixed(6)}`
+    infoWindow.setContent(
+      `${lat.toFixed(6)}, ${lng.toFixed(6)}`
       //JSON.stringify( null, 2)
     );
     infoWindow.open(map);

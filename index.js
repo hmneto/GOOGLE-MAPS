@@ -1,23 +1,23 @@
 async function MontaDados() {
-  savePositionsInStorage()
-  setPositionsInInputs()
+  savePositionsInStorage();
+  setPositionsInInputs();
   const centro = centerMap(8, 2);
   if (!centro) return;
-  console.log(centro);
+  // console.log(centro);
 }
 
-function openView(page){
-    fetch(`${page}.html`)
-      .then(function(response) {
-        return response.text();
-      })
-      .then(function (data) {
-        document.getElementById("content").innerHTML = data;
-        addInteraction(page);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+function openView(page) {
+  fetch(`${page}.html`)
+    .then(function (response) {
+      return response.text();
+    })
+    .then(function (data) {
+      document.getElementById("content").innerHTML = data;
+      addInteraction(page);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 function addInteraction(content) {
@@ -28,9 +28,15 @@ function addInteraction(content) {
   }
 }
 
+openView("second_tab");
+
 function secondTabInteraction() {
-  setUpInitalStorage()
+  setUpInitalStorage();
   myMap();
-  eventDragMap()
+  eventDragMap();
+  eventZoomMap();
   eventClickMap();
+  fitMap();
+  eventFitMap();
+  MontaDados();
 }

@@ -5,7 +5,7 @@ function savePositionsInStorage() {
   localStorage.setItem("zoom", zoom);
 }
 
-function setUpInitalStorage(){
+function setUpInitalStorage() {
   if (
     !localStorage.getItem("lat") ||
     !localStorage.getItem("long") ||
@@ -16,7 +16,6 @@ function setUpInitalStorage(){
     localStorage.setItem("zoom", "9");
   }
 }
-
 
 let _latMax, _latMin, _longMax, _longMin;
 function centerMap(zoom, ditancia) {
@@ -59,21 +58,63 @@ function setPositionsInInputs() {
   const { lat, lng, zoom } = getLatLongZoom();
   const link = `${window.location}?lat=${lat}&long=${lng}&zooml=${zoom}`;
 
-  console.log(link)
+  // console.log(link);
   if (document.getElementById("lat"))
     document.getElementById("lat").value = lat;
   if (document.getElementById("long"))
     document.getElementById("long").value = lng;
   if (document.getElementById("zoom"))
-    document.getElementById("zoom").value = zoom; 
+    document.getElementById("zoom").value = zoom;
   if (document.getElementById("link"))
     document.getElementById("link").value = link;
 }
 
+function fitMap() {
+  const sizeMapInnerHeight = window.innerHeight;
+  const sizeMapInnerWidth = window.innerWidth; 
+  document.getElementById("googleMap").style.height = sizeMapInnerHeight + "px";
+  document.getElementById("googleMap").style.width = sizeMapInnerWidth + "px";
+}
+
+function eventFitMap() {
+  window.addEventListener("resize", function () {
+    fitMap();
+  });
+}
+
+function getUrlParams(){
+  const latLongZoom = new getUrlVal(["lat", "long", "zooml"]);
+  // let { lat, long, zooml } = 
+  return latLongZoom.get_list();
+}
+
+function getInputSearchMapMemoryOrUrl(aa){
+  const {lat,long,zooml} = aa
+  let latitude;
+  let longitude;
+  let zoom;
+
+  if ((lat, long, zooml)) {
+    latitude = lat;
+    longitude = long;
+    zoom = Number(zooml);
+    window.location.search = "";
+  } else {
+    latitude = localStorage.getItem("lat");
+    longitude = localStorage.getItem("long");
+    zoom = Number(localStorage.getItem("zoom"));
+  }
+
+  return {
+    latitude,
+    longitude,
+    zoom
+  }
+}
 
 class getUrlVal {
   lista = null;
-  constructor(parametros_url) { 
+  constructor(parametros_url) {
     let lista_parametros_url_resolvidas = {};
     const get = (name) => {
       if (
