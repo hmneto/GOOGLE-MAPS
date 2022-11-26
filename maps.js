@@ -11,7 +11,7 @@ function myMap() {
   } = getInputSearchMapMemoryOrUrl(lat, long, zooml);
 
   var mapProp = {
-    center: new google.maps.LatLng(latitude, longitude),
+    center: getLatLngMaps(latitude, longitude),
     zoom: zoom,
     mapTypeId: google.maps.MapTypeId.HYBRID,
   };
@@ -27,13 +27,25 @@ function eventZoomMap() {
 }
 
 function eventClickMap() {
-  let infoWindow = new google.maps.InfoWindow({});
+  //let infoWindow = new google.maps.InfoWindow({});
+  let point = new google.maps.Marker({ })
   map.addListener("click", function (mapsMouseEvent){
     const { lat, lng } = mapsMouseEvent.latLng.toJSON();
-    infoWindow.close();
+    //infoWindow.close();
     infoWindow = new google.maps.InfoWindow({ position: mapsMouseEvent.latLng });
     infoWindow.setContent(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
-    infoWindow.open(map);
+    //infoWindow.open(map);
+    point.setMap(null);
+    point = createMark(getLatLngMaps(lat,lng), 'https://i.imgur.com/ZWJeURC.jpg')
+    point.setMap(map);
+
+  });
+}
+
+function createMark(position, icon){
+  return new google.maps.Marker({
+    position,
+   // icon,
   });
 }
 
@@ -57,12 +69,15 @@ function getLatLongZoom() {
   };
 }
 
+function getLatLngMaps(lat,lng){
+return new google.maps.LatLng(
+  parseFloat(lat),
+  parseFloat(lng)
+);
+}
 
 function goToLatLngMap(lat,lng,zoom) { 
-  const latLng = new google.maps.LatLng(
-    parseFloat(lat),
-    parseFloat(lng)
-  );
+  const latLng = getLatLngMaps(lat,lng)
 
   map.panTo(latLng);
   map.setZoom(Number(zoom));
