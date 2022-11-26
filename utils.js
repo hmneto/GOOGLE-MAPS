@@ -58,7 +58,7 @@ function setPositionsInInputs() {
   const { lat, lng, zoom } = getLatLongZoom();
   const link = `${window.location}?lat=${lat}&long=${lng}&zooml=${zoom}`;
 
-  // console.log(link);
+  console.log(link);
   if (document.getElementById("lat"))
     document.getElementById("lat").value = lat;
   if (document.getElementById("long"))
@@ -84,12 +84,10 @@ function eventFitMap() {
 
 function getUrlParams(){
   const latLongZoom = new getUrlVal(["lat", "long", "zooml"]);
-  // let { lat, long, zooml } = 
   return latLongZoom.get_list();
 }
 
-function getInputSearchMapMemoryOrUrl(aa){
-  const {lat,long,zooml} = aa
+function getInputSearchMapMemoryOrUrl(lat,long,zooml){
   let latitude;
   let longitude;
   let zoom;

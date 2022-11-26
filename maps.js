@@ -1,10 +1,14 @@
 let map;
 function myMap() {
+
+  let { lat, long, zooml } = getUrlParams()
+
+
   const {
     latitude,
     longitude,
     zoom
-  } = getInputSearchMapMemoryOrUrl(getUrlParams());
+  } = getInputSearchMapMemoryOrUrl(lat, long, zooml);
 
   var mapProp = {
     center: new google.maps.LatLng(latitude, longitude),
@@ -23,30 +27,12 @@ function eventZoomMap() {
 }
 
 function eventClickMap() {
-  //   const myLatlng = { lat: -25.363, lng: 131.044 };
-
-  // Create the initial InfoWindow.
-  let infoWindow = new google.maps.InfoWindow({
-    // content: "Click the map to get Lat/Lng!",
-    // position: myLatlng,
-  });
-
-  //infoWindow.open(map);
-
-  // Configure the click listener.
-  map.addListener("click", (mapsMouseEvent) => {
+  let infoWindow = new google.maps.InfoWindow({});
+  map.addListener("click", function (mapsMouseEvent){
     const { lat, lng } = mapsMouseEvent.latLng.toJSON();
-    // Close the current InfoWindow.
     infoWindow.close();
-
-    // Create a new InfoWindow.
-    infoWindow = new google.maps.InfoWindow({
-      position: mapsMouseEvent.latLng,
-    });
-    infoWindow.setContent(
-      `${lat.toFixed(6)}, ${lng.toFixed(6)}`
-      //JSON.stringify( null, 2)
-    );
+    infoWindow = new google.maps.InfoWindow({ position: mapsMouseEvent.latLng });
+    infoWindow.setContent(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
     infoWindow.open(map);
   });
 }
@@ -69,4 +55,15 @@ function getLatLongZoom() {
     lng: getCenterLngMap(),
     zoom: map.getZoom(),
   };
+}
+
+
+function goToLatLngMap(lat,lng,zoom) { 
+  const latLng = new googleMaps.LatLng(
+    parseFloat(lat),
+    parseFloat(lng)
+  );
+
+  map.panTo(latLng);
+  map.setZoom(Number(zoom));
 }
