@@ -1,9 +1,9 @@
 async function MontaDados() {
-  savePositionsInStorage();
-  setPositionsInInputs();
-  const centro = centerMap(8, 2);
+  mapaPage.savePositionsInStorage();
+  mapaPage.setPositionsInInputs();
+  const centro = mapaPage.centerMap(8, 2);
   if (!centro) return;
-  // console.log(centro);
+  console.log(centro);
 }
 
 function openView(page) {
@@ -31,12 +31,12 @@ function addInteraction(content) {
 openView("second_tab");
 
 function secondTabInteraction() {
-  setUpInitalStorage();
-  myMap();
-  eventDragMap();
-  eventZoomMap();
-  eventClickMap();
-  fitMap();
-  eventFitMap();
+  mapaPage.setUpInitalStorage();
+  googleMaps.myMap();
+  googleMaps.eventDragMap();
+  googleMaps.eventZoomMap();
+  googleMaps.eventClickMap();
+  mapaPage.fitMap();
+  mapaPage.eventFitMap();
   MontaDados();
 }

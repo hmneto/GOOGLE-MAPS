@@ -1,122 +1,128 @@
-function savePositionsInStorage() {
-  const { lat, lng, zoom } = getLatLongZoom();
-  localStorage.setItem("lat", lat);
-  localStorage.setItem("long", lng);
-  localStorage.setItem("zoom", zoom);
-}
+class MapaPage{
 
-function setUpInitalStorage() {
-  if (
-    !localStorage.getItem("lat") ||
-    !localStorage.getItem("long") ||
-    !localStorage.getItem("zoom")
-  ) {
-    localStorage.setItem("lat", "-21");
-    localStorage.setItem("long", "-50");
-    localStorage.setItem("zoom", "9");
+  savePositionsInStorage() {
+    const { lat, lng, zoom } = googleMaps.getLatLongZoom();
+    localStorage.setItem("lat", lat);
+    localStorage.setItem("long", lng);
+    localStorage.setItem("zoom", zoom);
   }
-}
-
-let _latMax, _latMin, _longMax, _longMin;
-function centerMap(zoom, ditancia) {
-  let latMax;
-  let latMin;
-  let longMax;
-  let longMin;
-
-  let retorno_dados;
-
-  if (getZoomMap() >= zoom) {
-    latMax = Math.round(getCenterLatMap() - ditancia);
-    latMin = Math.ceil(getCenterLatMap() + ditancia);
-    longMax = Math.round(getCenterLngMap() - ditancia);
-    longMin = Math.ceil(getCenterLngMap() + ditancia);
-
-    retorno_dados =
-      _latMax !== latMax ||
-      _latMin !== latMin ||
-      _longMax !== longMax ||
-      _longMin !== longMin;
-
-    if (retorno_dados) {
-      _latMax = latMax;
-      _latMin = latMin;
-      _longMax = longMax;
-      _longMin = longMin;
+  
+  setUpInitalStorage() {
+    if (
+      !localStorage.getItem("lat") ||
+      !localStorage.getItem("long") ||
+      !localStorage.getItem("zoom")
+    ) {
+      localStorage.setItem("lat", "-21");
+      localStorage.setItem("long", "-50");
+      localStorage.setItem("zoom", "9");
     }
   }
-
-  if (retorno_dados)
+  
+  _latMax
+  _latMin
+  _longMax
+  _longMin;
+  centerMap(zoom, ditancia) {
+    let latMax;
+    let latMin;
+    let longMax;
+    let longMin;
+  
+    let retorno_dados;
+  
+    if (googleMaps.getZoomMap() >= zoom) {
+      latMax = Math.round(googleMaps.getCenterLatMap() - ditancia);
+      latMin = Math.ceil(googleMaps.getCenterLatMap() + ditancia);
+      longMax = Math.round(googleMaps.getCenterLngMap() - ditancia);
+      longMin = Math.ceil(googleMaps.getCenterLngMap() + ditancia);
+  
+      retorno_dados =
+      this._latMax !== latMax ||
+      this._latMin !== latMin ||
+      this._longMax !== longMax ||
+      this._longMin !== longMin;
+  
+      if (retorno_dados) {
+        this._latMax = latMax;
+        this._latMin = latMin;
+        this._longMax = longMax;
+        this._longMin = longMin;
+      }
+    }
+  
+    if (retorno_dados)
+      return {
+        lat: googleMaps.getCenterLatMap(),
+        lng: googleMaps.getCenterLngMap(),
+      };
+    else return null;
+  }
+  
+  setPositionsInInputs() {
+    const { lat, lng, zoom } = googleMaps.getLatLongZoom();
+    const link = `${window.location}?lat=${lat}&long=${lng}&zooml=${zoom}`;
+  
+    console.log(link);
+    if (document.getElementById("lat"))
+      document.getElementById("lat").value = lat;
+    if (document.getElementById("long"))
+      document.getElementById("long").value = lng;
+    if (document.getElementById("zoom"))
+      document.getElementById("zoom").value = zoom;
+    if (document.getElementById("link"))
+      document.getElementById("link").value = link;
+  }
+  
+  fitMap() {
+    const sizeMapInnerHeight = window.innerHeight;
+    const sizeMapInnerWidth = window.innerWidth; 
+    document.getElementById("googleMap").style.height = sizeMapInnerHeight + "px";
+    document.getElementById("googleMap").style.width = sizeMapInnerWidth + "px";
+  }
+  
+  eventFitMap() {
+    window.addEventListener("resize", function () {
+      mapaPage.fitMap();
+    });
+  }
+  
+  getUrlParams(){
+    const latLongZoom = new getUrlVal(["lat", "long", "zooml"]);
+    return latLongZoom.get_list();
+  }
+  
+  getInputSearchMapMemoryOrUrl(lat,long,zooml){
+    let latitude;
+    let longitude;
+    let zoom;
+  
+    if ((lat, long, zooml)) {
+      latitude = lat;
+      longitude = long;
+      zoom = Number(zooml);
+      window.location.search = "";
+    } else {
+      latitude = localStorage.getItem("lat");
+      longitude = localStorage.getItem("long");
+      zoom = Number(localStorage.getItem("zoom"));
+    }
+  
     return {
-      lat: getCenterLatMap(),
-      lng: getCenterLngMap(),
-    };
-  else return null;
-}
-
-function setPositionsInInputs() {
-  const { lat, lng, zoom } = getLatLongZoom();
-  const link = `${window.location}?lat=${lat}&long=${lng}&zooml=${zoom}`;
-
-  console.log(link);
-  if (document.getElementById("lat"))
-    document.getElementById("lat").value = lat;
-  if (document.getElementById("long"))
-    document.getElementById("long").value = lng;
-  if (document.getElementById("zoom"))
-    document.getElementById("zoom").value = zoom;
-  if (document.getElementById("link"))
-    document.getElementById("link").value = link;
-}
-
-function fitMap() {
-  const sizeMapInnerHeight = window.innerHeight;
-  const sizeMapInnerWidth = window.innerWidth; 
-  document.getElementById("googleMap").style.height = sizeMapInnerHeight + "px";
-  document.getElementById("googleMap").style.width = sizeMapInnerWidth + "px";
-}
-
-function eventFitMap() {
-  window.addEventListener("resize", function () {
-    fitMap();
-  });
-}
-
-function getUrlParams(){
-  const latLongZoom = new getUrlVal(["lat", "long", "zooml"]);
-  return latLongZoom.get_list();
-}
-
-function getInputSearchMapMemoryOrUrl(lat,long,zooml){
-  let latitude;
-  let longitude;
-  let zoom;
-
-  if ((lat, long, zooml)) {
-    latitude = lat;
-    longitude = long;
-    zoom = Number(zooml);
-    window.location.search = "";
-  } else {
-    latitude = localStorage.getItem("lat");
-    longitude = localStorage.getItem("long");
-    zoom = Number(localStorage.getItem("zoom"));
+      latitude,
+      longitude,
+      zoom
+    }
   }
-
-  return {
-    latitude,
-    longitude,
-    zoom
+  
+  goToPosition(){
+    goToLatLngMap(
+      document.getElementById("lat").value,
+      document.getElementById("long").value,
+      document.getElementById("zoom").value
+    )
+  
   }
-}
-
-function goToPosition(){
-  goToLatLngMap(
-    document.getElementById("lat").value,
-    document.getElementById("long").value,
-    document.getElementById("zoom").value
-  )
-
 }
 
 class getUrlVal {
@@ -142,3 +148,5 @@ class getUrlVal {
     return this.lista;
   }
 }
+
+const mapaPage = new MapaPage()
