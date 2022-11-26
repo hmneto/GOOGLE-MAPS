@@ -27,7 +27,7 @@ function eventZoomMap() {
 }
 
 function eventClickMap() {
-  //let infoWindow = new google.maps.InfoWindow({});
+  let infoWindow = new google.maps.InfoWindow({});
   let point = new google.maps.Marker({ })
   map.addListener("click", function (mapsMouseEvent){
     const { lat, lng } = mapsMouseEvent.latLng.toJSON();
@@ -36,17 +36,18 @@ function eventClickMap() {
     infoWindow.setContent(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
     //infoWindow.open(map);
     point.setMap(null);
-    point = createMark(getLatLngMaps(lat,lng), 'https://i.imgur.com/ZWJeURC.jpg')
+    point = createMark(
+      getLatLngMaps(lat,lng), 
+      //'https://i.imgur.com/ZWJeURC.jpg'
+      )
     point.setMap(map);
 
   });
 }
 
 function createMark(position, icon){
-  return new google.maps.Marker({
-    position,
-   // icon,
-  });
+  const point = new google.maps.Marker({ position, icon});
+  return point
 }
 
 function getZoomMap() {
