@@ -59,7 +59,7 @@ function getLatLongZoom() {
 
 
 function goToLatLngMap(lat,lng,zoom) { 
-  const latLng = new googleMaps.LatLng(
+  const latLng = new google.maps.LatLng(
     parseFloat(lat),
     parseFloat(lng)
   );

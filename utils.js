@@ -110,6 +110,15 @@ function getInputSearchMapMemoryOrUrl(lat,long,zooml){
   }
 }
 
+function goToPosition(){
+  goToLatLngMap(
+    document.getElementById("lat").value,
+    document.getElementById("long").value,
+    document.getElementById("zoom").value
+  )
+
+}
+
 class getUrlVal {
   lista = null;
   constructor(parametros_url) {
