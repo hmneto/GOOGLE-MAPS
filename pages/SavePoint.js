@@ -21,4 +21,21 @@ class SavePoint {
 
     openView("MapPage");
   }
+
+
+  builtPage(icones){
+    let html = ""
+    for (let index = 0; index < icones.length; index++) {
+      const element = icones[index];
+      html += `<option data-value="${element.link}" value="${element.pointName}"></option>`
+    }
+    return html
+  }
+
+
+  fillInputsLatLng(){
+    const { lat, lng } = window.googleMapsGlobal.get()
+    document.getElementById('Latitude').value = lat.toFixed(6)
+    document.getElementById('Longitude').value = lng.toFixed(6)
+  }
 }
