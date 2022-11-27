@@ -34,27 +34,40 @@ class GoogleMaps {
     return point;
   }
 
+  getLastLatLngClick(){
+    const {lat, lng} = this.latLgn
+    return {
+      lat:lat.toFixed(6),
+      lng: lng.toFixed(6)
+    }
+  }
+
+
+
   eventClickMap() {
 
     let point = new google.maps.Marker({});
-    this.map.addListener("click", function (mapsMouseEvent) {
+    this.map.addListener("click", (mapsMouseEvent) =>{
+      this.latLgn = mapsMouseEvent.latLng.toJSON();
+
       const { lat, lng } = mapsMouseEvent.latLng.toJSON();
       point.setMap(null);
-      point = googleMaps.createMark(
-        googleMaps.getLatLngMaps(lat, lng)
+      point = this.createMark(
+        this.getLatLngMaps(lat, lng)
         //'https://i.imgur.com/ZWJeURC.jpg'
       );
-      point.setMap(googleMaps.map);
+      point.setMap(this.map);
 
       let infoWindow = new google.maps.InfoWindow({});
-      point.addListener("click", function(){
+      point.addListener("click", ()=>{
 
         infoWindow.close();
         infoWindow = new google.maps.InfoWindow({
           position: mapsMouseEvent.latLng,
         });
         infoWindow.setContent(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
-        infoWindow.open(googleMaps.map, point);
+        infoWindow.open(this.map, point);
+        console.log(this.getLastLatLngClick())
       })
     });
   }
