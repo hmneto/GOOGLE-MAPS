@@ -70,7 +70,6 @@ class MapaPage {
 
   setPositionsInInputs() {
     const { lat, lng, zoom } = googleMaps.getLatLongZoom();
-    const link = `${window.location}?lat=${lat}&long=${lng}&zooml=${zoom}`;
 
     if (document.getElementById("lat"))
       document.getElementById("lat").value = lat;
