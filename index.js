@@ -31,12 +31,20 @@ function addInteraction(content) {
 openView("MapPage");
 
 function SavePointInteraction(){
+  console.log(pontos)
   const savePoint = new SavePoint()
   window.savePointGlobal = savePoint
 
   const { lat, lng } = window.googleMapsGlobal.get()
+  document.getElementById('Latitude').value = lat.toFixed(6)
+  document.getElementById('Longitude').value = lng.toFixed(6)
 
-  console.log(lat.toFixed(6),lng.toFixed(6))
+  let html = ""
+  for (let index = 0; index < icones.length; index++) {
+    const element = icones[index];
+    html += `<option data-value="${element.link}" value="${element.pointName}"></option>`
+  }
+  document.getElementById("answers").innerHTML = html;
 }
 
 
@@ -65,3 +73,6 @@ const icones = [
     pointName: 'KM'
   }
 ]
+
+
+const pontos = []

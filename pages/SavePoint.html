@@ -1,12 +1,59 @@
-<div class="container-fluid" style="padding: 100px;">
-  
+<div class="container-fluid" style="padding: 100px">
+  <div class="row">
     <div class="col-md-12">
-        <input list="answers" id="answer" size="50" autocomplete="off" class="form-control" onmousedown="value = '';" placeholder="teste" onchange="window.savePointGlobal.test()">
-        <datalist id="answers">
-            <option data-value="42" value="The answer">
-        </datalist>
+      <div class="form-group">
+        <label for="namePoint">Point's name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="namePoint"
+          placeholder="Name that will be shown in pop of icon clicked"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="Latitude">Latitude</label>
+        <input type="text" class="form-control" id="Latitude" disabled />
+      </div>
     </div>
 
-    <!-- <button onclick="savePointGlobal.test()">Get data-value</button> -->
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="Longitude">Longitude</label>
+        <input type="text" class="form-control" id="Longitude" disabled />
+      </div>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="Longitude">Icon</label>
+        <input
+          list="answers"
+          id="answer"
+          size="50"
+          autocomplete="off"
+          class="form-control"
+          onmousedown="value = '';"
+          placeholder="Select the icon"
+          onchange="window.savePointGlobal.test()"
+        />
+        <datalist id="answers">
+          <option data-value="42" value="The answer"></option>
+        </datalist>
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <button onclick="savePointGlobal.save()">Get data-value</button>
+    </div>
+  </div>
 </div>

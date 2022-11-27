@@ -10,4 +10,12 @@ class SavePoint {
 
     console.log(value2send.dataset.value);
   }
+
+  save(){
+    pontos.push({
+        namePoint:document.getElementById('namePoint').value
+    })
+
+    openView("MapPage");
+  }
 }
