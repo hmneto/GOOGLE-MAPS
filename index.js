@@ -3,7 +3,7 @@ async function MontaDados() {
   mapaPage.setPositionsInInputs();
   const centro = mapaPage.centerMap(8, 2);
   if (!centro) return;
-  console.log(centro);
+  //console.log(centro);
 }
 
 function openView(page) {
