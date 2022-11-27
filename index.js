@@ -31,7 +31,17 @@ function addInteraction(content) {
 openView("SavePoint");
 
 function SavePointInteraction(){
+  const savePoint = new SavePoint()
   console.log('here')
+}
+
+
+
+
+function teste(){
+  var shownVal = document.getElementById("answer").value;
+  var value2send = document.querySelector("#answers option[value='"+shownVal+"']").dataset.value;
+  console.log(shownVal,value2send)
 }
 
 function MapPageInteraction() {

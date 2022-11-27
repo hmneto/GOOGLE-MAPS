@@ -1,2 +1,21 @@
-<button id="first_button" class="button-default">Increment</button>
-<p id="first_data" class="data">0</p>
+<div class="container-fluid">
+    <label for="browser">Choose your browser from the list:</label>
+    <input list="browsers" name="browser" id="browser">
+    
+    <datalist id="browsers">
+      <option value="Edge">
+      <option value="Firefox">
+      <option value="Chrome">
+      <option value="Opera">
+      <option value="Safari">
+    </datalist>
+
+
+
+    <input list="answers" id="answer">
+    <datalist id="answers">
+        <option data-value="42" value="The answer">
+    </datalist>
+
+    <button onclick="teste()"></button>
+</div>
