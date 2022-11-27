@@ -8,12 +8,15 @@ class SavePoint {
 
     if (!value2send) return;
 
-    console.log(value2send.dataset.value);
+    return value2send.dataset.value
   }
 
   save(){
     pontos.push({
-        namePoint:document.getElementById('namePoint').value
+        namePoint:document.getElementById('namePoint').value,
+        lat: document.getElementById('Latitude').value,
+        lng: document.getElementById('Longitude').value,
+        link: this.test()
     })
 
     openView("MapPage");

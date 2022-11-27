@@ -71,8 +71,25 @@ const icones = [
   {
     link:'https://i.imgur.com/ZWJeURC.jpg',
     pointName: 'KM'
+  },
+  {
+    pointName:'standart',
+    link: null
   }
 ]
 
 
-const pontos = []
+const pontos = [
+  {
+      "namePoint": "stan",
+      "lat": "-15.747336",
+      "lng": "-44.228270",
+      "link": "null"
+  },
+  {
+      "namePoint": "new",
+      "lat": "-15.754523",
+      "lng": "-44.236724",
+      "link": "https://i.imgur.com/ZWJeURC.jpg"
+  }
+]
