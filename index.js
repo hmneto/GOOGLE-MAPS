@@ -21,14 +21,18 @@ function openView(page) {
 }
 
 function addInteraction(content) {
-  if (content === "first_tab") {
-    // firstTabInteraction();
+  if (content === "SavePoint") {
+    SavePointInteraction()
   } else if (content === "MapPage") {
     MapPageInteraction();
   }
 }
 
-openView("MapPage");
+openView("SavePoint");
+
+function SavePointInteraction(){
+  console.log('here')
+}
 
 function MapPageInteraction() {
   const mapPage = new MapPage();
