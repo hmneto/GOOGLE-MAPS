@@ -64,7 +64,7 @@ class GoogleMaps {
       point.setMap(null);
       point = this.createMark(
         this.getLatLngMaps(lat, lng),
-        'https://i.imgur.com/ZWJeURC.jpg'
+        //'https://i.imgur.com/ZWJeURC.jpg'
       );
       point.setMap(this.map);
 
@@ -76,7 +76,7 @@ class GoogleMaps {
         });
         infoWindow.setContent(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
         infoWindow.open(this.map, point);
-        console.log(this.getLastLatLngClick());
+        //console.log(this.getLastLatLngClick());
       });
     });
   }
