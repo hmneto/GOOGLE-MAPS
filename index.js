@@ -28,11 +28,15 @@ function addInteraction(content) {
   }
 }
 
-openView("SavePoint");
+openView("MapPage");
 
 function SavePointInteraction(){
   const savePoint = new SavePoint()
   window.savePointGlobal = savePoint
+
+  const { lat, lng } = window.googleMapsGlobal.get()
+
+  console.log(lat.toFixed(6),lng.toFixed(6))
 }
 
 
@@ -53,3 +57,11 @@ function MapPageInteraction() {
   mapPage.eventFitMap();
   MontaDados(mapPage,googleMaps);
 }
+
+
+const icones = [
+  {
+    link:'https://i.imgur.com/ZWJeURC.jpg',
+    pointName: 'KM'
+  }
+]
