@@ -58,20 +58,28 @@ class MapaPage{
       };
     else return null;
   }
+
+  setLinkLatLng(){
+    const { lat, lng, zoom } = googleMaps.getLatLongZoom();
+    const link = `${window.location}?lat=${lat}&long=${lng}&zooml=${zoom}`;
+  
+    // console.log(link);
+
+    if (document.getElementById("link"))
+      document.getElementById("link").value = link;
+  }
   
   setPositionsInInputs() {
     const { lat, lng, zoom } = googleMaps.getLatLongZoom();
     const link = `${window.location}?lat=${lat}&long=${lng}&zooml=${zoom}`;
   
-    console.log(link);
     if (document.getElementById("lat"))
       document.getElementById("lat").value = lat;
     if (document.getElementById("long"))
       document.getElementById("long").value = lng;
     if (document.getElementById("zoom"))
       document.getElementById("zoom").value = zoom;
-    if (document.getElementById("link"))
-      document.getElementById("link").value = link;
+
   }
   
   fitMap() {

@@ -1,5 +1,4 @@
 class GoogleMaps {
-  //map;
   myMap() {
     let { lat, long, zooml } = mapaPage.getUrlParams();
 
@@ -36,22 +35,27 @@ class GoogleMaps {
   }
 
   eventClickMap() {
-    let infoWindow = new google.maps.InfoWindow({});
+
     let point = new google.maps.Marker({});
     this.map.addListener("click", function (mapsMouseEvent) {
       const { lat, lng } = mapsMouseEvent.latLng.toJSON();
-      infoWindow.close();
-      infoWindow = new google.maps.InfoWindow({
-        position: mapsMouseEvent.latLng,
-      });
-      infoWindow.setContent(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
-      //infoWindow.open(googleMaps.map);
       point.setMap(null);
       point = googleMaps.createMark(
         googleMaps.getLatLngMaps(lat, lng)
         //'https://i.imgur.com/ZWJeURC.jpg'
       );
       point.setMap(googleMaps.map);
+
+      let infoWindow = new google.maps.InfoWindow({});
+      point.addListener("click", function(){
+
+        infoWindow.close();
+        infoWindow = new google.maps.InfoWindow({
+          position: mapsMouseEvent.latLng,
+        });
+        infoWindow.setContent(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+        infoWindow.open(googleMaps.map, point);
+      })
     });
   }
 
