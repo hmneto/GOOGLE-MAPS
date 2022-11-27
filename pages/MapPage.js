@@ -1,5 +1,5 @@
 class MapPage {
-  savePositionsInStorage() {
+  savePositionsInStorage(googleMaps) {
     const { lat, lng, zoom } = googleMaps.getLatLongZoom();
     localStorage.setItem("lat", lat);
     localStorage.setItem("long", lng);
@@ -22,7 +22,7 @@ class MapPage {
   _latMin;
   _longMax;
   _longMin;
-  centerMap(zoom, ditancia) {
+  centerMap(zoom, ditancia,googleMaps) {
     let latMax;
     let latMin;
     let longMax;
@@ -68,7 +68,7 @@ class MapPage {
       document.getElementById("link").value = link;
   }
 
-  setPositionsInInputs() {
+  setPositionsInInputs(googleMaps) {
     const { lat, lng, zoom } = googleMaps.getLatLongZoom();
 
     if (document.getElementById("lat"))
@@ -122,7 +122,7 @@ class MapPage {
   }
 
   goToPosition() {
-    googleMaps.goToLatLngMap(
+    window.googleMapsGlobal.goToLatLngMap(
       document.getElementById("lat").value,
       document.getElementById("long").value,
       document.getElementById("zoom").value
@@ -154,4 +154,3 @@ class getUrlVal {
   }
 }
 
-const mapaPage = new MapPage();

@@ -1,7 +1,7 @@
-async function MontaDados() {
-  mapaPage.savePositionsInStorage();
-  mapaPage.setPositionsInInputs();
-  const centro = mapaPage.centerMap(8, 2);
+async function MontaDados(mapaPage, googleMaps) {
+  mapaPage.savePositionsInStorage(googleMaps);
+  mapaPage.setPositionsInInputs(googleMaps);
+  const centro = mapaPage.centerMap(8, 2,googleMaps);
   if (!centro) return;
   //console.log(centro);
 }
@@ -31,12 +31,17 @@ function addInteraction(content) {
 openView("MapPage");
 
 function secondTabInteraction() {
+  const mapaPage = new MapPage();
+  const googleMaps = new GoogleMaps();
+  window.mapaPageGlobal = mapaPage
+  window.googleMapsGlobal = googleMaps
+
   mapaPage.setUpInitalStorage();
-  googleMaps.myMap();
-  googleMaps.eventDragMap();
-  googleMaps.eventZoomMap();
+  googleMaps.myMap(mapaPage);
+  googleMaps.eventDragMap(mapaPage,googleMaps);
+  googleMaps.eventZoomMap(mapaPage,googleMaps);
   googleMaps.eventClickMap();
   mapaPage.fitMap();
   mapaPage.eventFitMap();
-  MontaDados();
+  MontaDados(mapaPage,googleMaps);
 }
