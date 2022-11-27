@@ -1,12 +1,10 @@
 <div class="container-fluid">
   
     <div class="col-md-4">
-        <div class="form-group"></div>
-        <input list="answers" id="answer" style="display: block;" size="50" autocomplete="off" class="form-control" onmousedown="value = '';">
+        <input list="answers" id="answer"   size="50" autocomplete="off" class="form-control">
         <datalist id="answers">
-            <option data-value="42" value="The answer" style="display: block;">
+            <option data-value="42" value="The answer">
         </datalist>
-        </div>
     </div>
 
     <button onclick="savePointGlobal.test()">Get data-value</button>
