@@ -93,8 +93,8 @@ class GoogleMaps {
   goToLatLngMap(lat, lng, zoom) {
     const latLng = this.getLatLngMaps(lat, lng);
 
-    map.panTo(latLng);
-    map.setZoom(Number(zoom));
+    this.map.panTo(latLng);
+    this.map.setZoom(Number(zoom));
   }
 }
 const googleMaps = new GoogleMaps();

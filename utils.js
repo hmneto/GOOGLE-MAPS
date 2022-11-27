@@ -122,7 +122,7 @@ class MapaPage {
   }
 
   goToPosition() {
-    goToLatLngMap(
+    googleMaps.goToLatLngMap(
       document.getElementById("lat").value,
       document.getElementById("long").value,
       document.getElementById("zoom").value
