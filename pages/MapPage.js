@@ -129,23 +129,24 @@ class MapPage {
     );
   }
 
-  mountPointsInTheMap(LatLngMaps, link, googleMaps){
-    let point
-    if(link != 'null'){
-      point = googleMaps.createMark(
-        LatLngMaps,
-        link
-      );
-    }else{
-      point = googleMaps.createMark(
-        LatLngMaps
-      );
+  mountPointsInTheMap(list, googleMaps) {
+    for (let index = 0; index < list.length; index++) {
+      const element = list[index];
+      let point;
+      if (element.link != "null") {
+        point = googleMaps.createMark(
+          googleMaps.getLatLngMaps(element.lat, element.lng),
+          element.link
+        );
+      } else {
+        point = googleMaps.createMark(
+          googleMaps.getLatLngMaps(element.lat, element.lng)
+        );
+      }
+
+      point.setMap(googleMaps.map);
     }
-
-    point.setMap(googleMaps.map);
-
-}
-
+  }
 }
 
 class getUrlVal {

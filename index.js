@@ -3,18 +3,7 @@ async function MontaDados(mapPage, googleMaps) {
   mapPage.setPositionsInInputs(googleMaps);
   const centro = mapPage.centerMap(8, 2, googleMaps);
   if (!centro) return;
-  createIcons(pontos, mapPage, googleMaps);
-}
-
-function createIcons(list, mapPage, googleMaps) {
-  for (let index = 0; index < list.length; index++) {
-    const element = list[index];
-    mapPage.mountPointsInTheMap(
-      googleMaps.getLatLngMaps(element.lat, element.lng),
-      element.link,
-      googleMaps
-    );
-  }
+  mapPage.mountPointsInTheMap(pontos, googleMaps);
 }
 
 function openView(page) {
@@ -39,8 +28,6 @@ function addInteraction(content) {
   }
 }
 
-openView("MapPage");
-
 function SavePointInteraction() {
   const savePoint = new SavePoint();
   window.savePointGlobal = savePoint;
@@ -64,6 +51,8 @@ function MapPageInteraction() {
   mapPage.eventFitMap(mapPage);
   MontaDados(mapPage, googleMaps);
 }
+
+openView("MapPage");
 
 const icones = [
   {

@@ -41,7 +41,7 @@
           class="form-control"
           onmousedown="value = '';"
           placeholder="Select the icon"
-          onchange="window.savePointGlobal.test()"
+          onchange="window.savePointGlobal.getValueFromDataList()"
         />
         <datalist id="answers">
           <option data-value="42" value="The answer"></option>
@@ -53,7 +53,7 @@
   <br />
   <div class="row">
     <div class="col-md-12">
-      <button onclick="savePointGlobal.save()">Save Point</button>
+      <button onclick="savePointGlobal.addPoint()">Save Point</button>
     </div>
   </div>
 </div>
