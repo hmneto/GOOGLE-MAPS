@@ -52,8 +52,8 @@ class GoogleMaps {
       const { lat, lng } = mapsMouseEvent.latLng.toJSON();
       point.setMap(null);
       point = this.createMark(
-        this.getLatLngMaps(lat, lng)
-        //'https://i.imgur.com/ZWJeURC.jpg'
+        this.getLatLngMaps(lat, lng),
+        'https://i.imgur.com/ZWJeURC.jpg'
       );
       point.setMap(this.map);
 
