@@ -1,12 +1,12 @@
 <div class="container-fluid" style="padding: 100px;">
   
     <div class="col-md-12">
-        <input list="answers" id="answer" size="50" autocomplete="off" class="form-control" placeholder="teste">
+        <input list="answers" id="answer" size="50" autocomplete="off" class="form-control" onmousedown="value = '';" placeholder="teste" onchange="window.savePointGlobal.test()">
         <datalist id="answers">
             <option data-value="42" value="The answer">
         </datalist>
     </div>
 
-    <button onclick="savePointGlobal.test()">Get data-value</button>
+    <!-- <button onclick="savePointGlobal.test()">Get data-value</button> -->
 
 </div>
