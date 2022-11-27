@@ -28,7 +28,7 @@ function addInteraction(content) {
   }
 }
 
-openView("MapPage");
+openView("SavePoint");
 
 function SavePointInteraction() {
   const savePoint = new SavePoint();
