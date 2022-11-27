@@ -3,7 +3,10 @@ async function MontaDados(mapPage, googleMaps) {
   mapPage.setPositionsInInputs(googleMaps);
   const centro = mapPage.centerMap(8, 2,googleMaps);
   if (!centro) return;
-  console.log(centro);
+  for (let index = 0; index < pontos.length; index++) {
+    const element = pontos[index];
+    googleMaps.createMark2(googleMaps.getLatLngMaps(element.lat,element.lng), element.link)
+  }
 }
 
 function openView(page) {
@@ -31,7 +34,6 @@ function addInteraction(content) {
 openView("MapPage");
 
 function SavePointInteraction(){
-  console.log(pontos)
   const savePoint = new SavePoint()
   window.savePointGlobal = savePoint
 
@@ -84,12 +86,12 @@ const pontos = [
       "namePoint": "stan",
       "lat": "-15.747336",
       "lng": "-44.228270",
-      "link": "null"
+      "link": "https://i.imgur.com/ZWJeURC.jpg"
   },
   {
       "namePoint": "new",
       "lat": "-15.754523",
       "lng": "-44.236724",
-      "link": "https://i.imgur.com/ZWJeURC.jpg"
+      "link": null
   }
 ]
