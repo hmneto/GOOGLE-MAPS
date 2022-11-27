@@ -89,7 +89,7 @@ class MapPage {
 
   eventFitMap() {
     window.addEventListener("resize", function () {
-      mapaPage.fitMap();
+      mapPage.fitMap();
     });
   }
 
