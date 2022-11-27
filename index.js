@@ -24,13 +24,13 @@ function addInteraction(content) {
   if (content === "first_tab") {
     // firstTabInteraction();
   } else if (content === "MapPage") {
-    secondTabInteraction();
+    MapPageInteraction();
   }
 }
 
 openView("MapPage");
 
-function secondTabInteraction() {
+function MapPageInteraction() {
   const mapaPage = new MapPage();
   const googleMaps = new GoogleMaps();
   window.mapaPageGlobal = mapaPage
