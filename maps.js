@@ -13,7 +13,10 @@ class GoogleMaps {
       zoom: zoom,
       mapTypeId: google.maps.MapTypeId.HYBRID,
     };
-    this.map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    this.map = new google.maps.Map(
+      document.getElementById("googleMap"),
+      mapProp
+    );
   }
 
   eventDragMap() {
@@ -28,26 +31,22 @@ class GoogleMaps {
     return new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
   }
 
-
   createMark(position, icon) {
     const point = new google.maps.Marker({ position, icon });
     return point;
   }
 
-  getLastLatLngClick(){
-    const {lat, lng} = this.latLgn
+  getLastLatLngClick() {
+    const { lat, lng } = this.latLgn;
     return {
-      lat:lat.toFixed(6),
-      lng: lng.toFixed(6)
-    }
+      lat: lat.toFixed(6),
+      lng: lng.toFixed(6),
+    };
   }
 
-
-
   eventClickMap() {
-
     let point = new google.maps.Marker({});
-    this.map.addListener("click", (mapsMouseEvent) =>{
+    this.map.addListener("click", (mapsMouseEvent) => {
       this.latLgn = mapsMouseEvent.latLng.toJSON();
 
       const { lat, lng } = mapsMouseEvent.latLng.toJSON();
@@ -59,20 +58,17 @@ class GoogleMaps {
       point.setMap(this.map);
 
       let infoWindow = new google.maps.InfoWindow({});
-      point.addListener("click", ()=>{
-
+      point.addListener("click", () => {
         infoWindow.close();
         infoWindow = new google.maps.InfoWindow({
           position: mapsMouseEvent.latLng,
         });
         infoWindow.setContent(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
         infoWindow.open(this.map, point);
-        console.log(this.getLastLatLngClick())
-      })
+        console.log(this.getLastLatLngClick());
+      });
     });
   }
-
-
 
   getZoomMap() {
     return this.map.getZoom();
@@ -93,7 +89,6 @@ class GoogleMaps {
       zoom: this.map.getZoom(),
     };
   }
-
 
   goToLatLngMap(lat, lng, zoom) {
     const latLng = this.getLatLngMaps(lat, lng);
