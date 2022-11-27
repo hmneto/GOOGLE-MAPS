@@ -3,10 +3,10 @@ async function MontaDados(mapPage, googleMaps) {
   mapPage.setPositionsInInputs(googleMaps);
   const centro = mapPage.centerMap(8, 2, googleMaps);
   if (!centro) return;
-  createIcons(pontos, mapPage, googleMaps)
+  createIcons(pontos, mapPage, googleMaps);
 }
 
-function createIcons(list, mapPage,googleMaps){
+function createIcons(list, mapPage, googleMaps) {
   for (let index = 0; index < list.length; index++) {
     const element = list[index];
     mapPage.mountPointsInTheMap(
