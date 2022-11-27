@@ -7,7 +7,7 @@ async function MontaDados() {
 }
 
 function openView(page) {
-  fetch(`${page}.html`)
+  fetch(`pages/${page}.html`)
     .then(function (response) {
       return response.text();
     })
