@@ -3,7 +3,7 @@ async function MontaDados(mapPage, googleMaps) {
   mapPage.setPositionsInInputs(googleMaps);
   const centro = mapPage.centerMap(8, 2,googleMaps);
   if (!centro) return;
-  //console.log(centro);
+  console.log(centro);
 }
 
 function openView(page) {
