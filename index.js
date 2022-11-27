@@ -1,7 +1,7 @@
 async function MontaDados(mapPage, googleMaps) {
   mapPage.savePositionsInStorage(googleMaps);
   mapPage.setPositionsInInputs(googleMaps);
-  const centro = mapPage.centerMap(8, 2,googleMaps);
+  const centro = mapPage.centerMap(8, 2, googleMaps);
   if (!centro) return;
   //console.log(centro);
 }
@@ -22,32 +22,31 @@ function openView(page) {
 
 function addInteraction(content) {
   if (content === "SavePoint") {
-    SavePointInteraction()
+    SavePointInteraction();
   } else if (content === "MapPage") {
     MapPageInteraction();
   }
 }
 
-openView("SavePoint");
+openView("MapPage");
 
-function SavePointInteraction(){
-  const savePoint = new SavePoint()
-  window.savePointGlobal = savePoint
+function SavePointInteraction() {
+  const savePoint = new SavePoint();
+  window.savePointGlobal = savePoint;
 }
-
 
 function MapPageInteraction() {
   const mapPage = new MapPage();
   const googleMaps = new GoogleMaps();
-  window.mapPageGlobal = mapPage
-  window.googleMapsGlobal = googleMaps
+  window.mapPageGlobal = mapPage;
+  window.googleMapsGlobal = googleMaps;
 
   mapPage.setUpInitalStorage();
   googleMaps.myMap(mapPage);
-  googleMaps.eventDragMap(mapPage,googleMaps);
-  googleMaps.eventZoomMap(mapPage,googleMaps);
+  googleMaps.eventDragMap(mapPage, googleMaps);
+  googleMaps.eventZoomMap(mapPage, googleMaps);
   googleMaps.eventClickMap();
   mapPage.fitMap();
   mapPage.eventFitMap();
-  MontaDados(mapPage,googleMaps);
+  MontaDados(mapPage, googleMaps);
 }

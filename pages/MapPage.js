@@ -22,7 +22,7 @@ class MapPage {
   _latMin;
   _longMax;
   _longMin;
-  centerMap(zoom, ditancia,googleMaps) {
+  centerMap(zoom, ditancia, googleMaps) {
     let latMax;
     let latMin;
     let longMax;
@@ -153,4 +153,3 @@ class getUrlVal {
     return this.lista;
   }
 }
-
