@@ -32,8 +32,19 @@ class GoogleMaps {
   }
 
   createMark(position, icon) {
-    const point = new google.maps.Marker({ position, icon });
-    return point;
+    return new google.maps.Marker({ position, icon });
+  }
+
+  getZoomMap() {
+    return this.map.getZoom();
+  }
+
+  getCenterLatMap() {
+    return this.map.getCenter().lat().toFixed(6);
+  }
+
+  getCenterLngMap() {
+    return this.map.getCenter().lng().toFixed(6);
   }
 
   getLastLatLngClick() {
@@ -70,17 +81,7 @@ class GoogleMaps {
     });
   }
 
-  getZoomMap() {
-    return this.map.getZoom();
-  }
 
-  getCenterLatMap() {
-    return this.map.getCenter().lat().toFixed(6);
-  }
-
-  getCenterLngMap() {
-    return this.map.getCenter().lng().toFixed(6);
-  }
 
   getLatLongZoom() {
     return {
