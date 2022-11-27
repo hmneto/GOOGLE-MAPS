@@ -128,6 +128,24 @@ class MapPage {
       document.getElementById("zoom").value
     );
   }
+
+  mountPointsInTheMap(LatLngMaps, link, googleMaps){
+    let point
+    if(link != 'null'){
+      point = googleMaps.createMark(
+        LatLngMaps,
+        link
+      );
+    }else{
+      point = googleMaps.createMark(
+        LatLngMaps
+      );
+    }
+
+    point.setMap(googleMaps.map);
+
+}
+
 }
 
 class getUrlVal {
