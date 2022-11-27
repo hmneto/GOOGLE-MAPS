@@ -87,7 +87,7 @@ class MapPage {
     document.getElementById("googleMap").style.width = sizeMapInnerWidth + "px";
   }
 
-  eventFitMap() {
+  eventFitMap(mapPage) {
     window.addEventListener("resize", function () {
       mapPage.fitMap();
     });

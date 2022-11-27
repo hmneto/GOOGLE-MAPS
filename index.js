@@ -64,7 +64,7 @@ function MapPageInteraction() {
   googleMaps.eventZoomMap(mapPage,googleMaps);
   googleMaps.eventClickMap();
   mapPage.fitMap();
-  mapPage.eventFitMap();
+  mapPage.eventFitMap(mapPage);
   MontaDados(mapPage,googleMaps);
 }
 
