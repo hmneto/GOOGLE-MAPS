@@ -49,7 +49,7 @@ class GoogleMaps {
     this.map.addListener("click", (mapsMouseEvent) => {
       this.latLgn = mapsMouseEvent.latLng.toJSON();
 
-      const { lat, lng } = mapsMouseEvent.latLng.toJSON();
+      const { lat, lng } = this.latLgn
       point.setMap(null);
       point = this.createMark(
         this.getLatLngMaps(lat, lng),
