@@ -23,12 +23,12 @@ function openView(page) {
 function addInteraction(content) {
   if (content === "first_tab") {
     // firstTabInteraction();
-  } else if (content === "second_tab") {
+  } else if (content === "MapaPage") {
     secondTabInteraction();
   }
 }
 
-openView("second_tab");
+openView("MapaPage");
 
 function secondTabInteraction() {
   mapaPage.setUpInitalStorage();
